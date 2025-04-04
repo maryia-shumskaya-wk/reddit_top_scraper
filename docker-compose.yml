@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  server:
+    build: .
+    command: bash -c "cd code && source ./venv/bin/activate && python server.py"
+    network_mode: "host"
+  parser:
+    build: .
+    command: bash -c "cd code && source ./venv/bin/activate && python run.py -w 5"
+    network_mode: "host"
+    depends_on:
+      - server
